@@ -34,3 +34,24 @@ def administrar_destinos(request):
       'destinos': destinos,
     }
     return render(request, 'administrar_destinos.html', context)
+
+def modificar_destino(request, nombre_ciudad):
+    destino = get_object_or_404(DestinosTuristicos, nombreCiudad=nombre_ciudad)
+    form = destinoForm(request.POST, request.FILES, instance=destino)
+
+    
+    context = {
+        'form': form
+    }
+    return render(request, 'modificar_destino.html', context)
+
+def eliminar_destino(request, nombre_ciudad):
+    destino = get_object_or_404(DestinosTuristicos, nombreCiudad=nombre_ciudad)
+    if request.method == 'POST':
+        destino.delete()
+        return redirect('administrar_destinos')
+    context = {
+        'destino': destino,
+    }
+    
+    return render(request, 'eliminar_destino.html', context)

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Administracion</title>
+    <title>Lugares Turísticos</title>
 </head>
 <body>
     <header>
@@ -21,17 +21,13 @@
         </nav>
     </header>
     
-    {% block content %}
-    <div id = "destinos" class="dest-container">
-        <h1>Listado de destinos turisticos</h1>
-        <ul>
-        {% for obj in destinos %}
-            <li>{{ obj.nombreCiudad }} <a href="{% url 'modificar_destino' nombre_ciudad=obj.nombreCiudad %}">Modificar</a> <a href="{% url 'eliminar_destino' nombre_ciudad=obj.nombreCiudad %}">Eliminar</a></li>
-        {% endfor %}
-        </ul>
-    </div>
-    {%endblock%}
-
+    <h1>Eliminar Destino Turístico</h1>
+    <p>¿Estás seguro de que deseas eliminar el siguiente destino turístico?</p>
+    <p>Nombre de la ciudad: {{ destino.nombreCiudad }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+    </form>
     
 
 
