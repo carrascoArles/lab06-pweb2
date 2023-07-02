@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administracion</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:8000/" class="sub">Inicio</a></li>
+
+                {% if user.is_authenticated %}
+                    <li class="sub welcome-message">¡Bienvenido<span> {{user.username}}!</span></li>
+                    <li><a href="http://127.0.0.1:8000/cuentas/logout" class="sub">Salir</a></li>
+                {% else %}
+                    <li><a href="http://127.0.0.1:8000/cuentas/register" class="sub">Registrarse</a></li>
+                    <li><a href="http://127.0.0.1:8000/cuentas/login" class="sub">Ingresar</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+    
+    {% block content %}
+    <div id = "destinos" class="dest-container">
+        <h1>Listado de destinos turisticos</h1>
+        <ul>
+        {% for obj in destinos %}
+            <li>{{ obj.nombreCiudad }} <a href="http://127.0.0.1:8000/modificar_destino/{{ obj.nombreCiudad }}">Modificar</a> <a href="http://127.0.0.1:8000/eliminar_destino/{{ obj.nombreCiudad }}">Eliminar</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    {%endblock%}
+
+    
+
+
+</body>
+</html>
