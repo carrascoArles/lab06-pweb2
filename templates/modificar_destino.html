@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lugares Turísticos</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:8000/" class="sub">Inicio</a></li>
+
+                {% if user.is_authenticated %}
+                    <li class="sub welcome-message">¡Bienvenido<span> {{user.username}}!</span></li>
+                    <li><a href="http://127.0.0.1:8000/cuentas/logout" class="sub">Salir</a></li>
+                {% else %}
+                    <li><a href="http://127.0.0.1:8000/cuentas/register" class="sub">Registrarse</a></li>
+                    <li><a href="http://127.0.0.1:8000/cuentas/login" class="sub">Ingresar</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Modificar Destino Turístico</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar cambios">
+    </form>
+    
+
+
+</body>
+</html>

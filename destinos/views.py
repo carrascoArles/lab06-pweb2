@@ -37,8 +37,13 @@ def administrar_destinos(request):
 
 def modificar_destino(request, nombre_ciudad):
     destino = get_object_or_404(DestinosTuristicos, nombreCiudad=nombre_ciudad)
-    form = destinoForm(request.POST, request.FILES, instance=destino)
-
+    if request.method == 'POST':
+        form = destinoForm(request.POST, request.FILES, instance=destino)
+        if form.is_valid():
+            form.save()
+            return redirect('administrar_destinos')
+    else:
+        form = destinoForm(instance=destino)
     
     context = {
         'form': form
