@@ -1,1 +1,44 @@
-a
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Registrar...</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+<header>
+    <nav>
+        <ul >
+            <li><a href="http://127.0.0.1:8000/" class="sub">Inicio</a></li>
+            <li><a href="http://127.0.0.1:8000/cuentas/login" class="sub">Ingresar</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<body>
+
+    <h1>REGISTRAR</h1>
+
+    <form action="register" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="first_name" placeholder="Nombres"><br>
+        <input type="text" name="last_name" placeholder="Apellidos"><br>
+        <input type="text" name="username" placeholder="Usuario"><br>
+        <input type="email" name="email" placeholder="Correo"><br>
+        <input type="password" name="password1" placeholder="Contraseña"><br>
+        <input type="password" name="password2" placeholder="Confirmar Contraseña"><br>
+        <input type="Submit">
+
+    </form>
+
+    <div>
+        {% for message in messages %}
+        <h3> {{message}}  </h3>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
