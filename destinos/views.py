@@ -27,3 +27,10 @@ def crear_destinos(request):
     'form': form
     }
     return render(request, 'crear_destino.html', context)
+
+def administrar_destinos(request):
+    destinos = DestinosTuristicos.objects.all()
+    context ={
+      'destinos': destinos,
+    }
+    return render(request, 'administrar_destinos.html', context)
