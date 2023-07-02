@@ -21,5 +21,24 @@
         </nav>
     </header>
 
+    {% block content %}
+    <div id = "destinos" class="dest-container">
+        {% for obj in destinos %}
+            <div class="destino">
+                <h1 class="destino-nombre">{{ obj.nombreCiudad }}</h1>
+                
+                <div class="img-container">
+                    <img src='{{ obj.imagenCiudad }}' alt = '{{ obj.nombreCiudad }}'class="destino-imagen">
+                </div>
+
+                <h2 class="destino-descripcion">{{ obj.descripcionCiudad }}</h2>
+                <h2>En Oferta: {{ obj.ofertaTour }}</h2>
+                <h1 class="destino-costo">Precio: S/{{ obj.precioTour }}</h1>
+            </div>
+        {% endfor %}
+    </div>
+    {%endblock%}
+    
+
 </body>
 </html>
