@@ -19,8 +19,11 @@ def detalle_destino(request, destino_id):
 
 def crear_destinos(request):
 
+    form = destinoForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        form = destinoForm()
     context = {
-        'form': form,
+    'form': form
     }
-
     return render(request, 'crear_destino.html', context)
